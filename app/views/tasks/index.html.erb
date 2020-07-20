@@ -1,3 +1,10 @@
+<% if logged_in? %>
+<p>ログイン完了ユーザ: 
+<%= current_user.name %><br>
+<%= link_to "新規タスクの投稿", new_task_path %>
+</p>
+<% else %>
+
 <h1>タスク一覧</h1>
 
 <ul>
@@ -15,5 +22,5 @@
    <% end %>
 
 </ul>
+<% end %>
 
-<%= link_to "新規タスクの投稿", new_task_path %>
