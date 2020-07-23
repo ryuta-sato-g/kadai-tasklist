@@ -30,8 +30,10 @@
   
 <%= f.text_field :content %>
 
-
+<% if current_user == task.user %>
   
 <%= f.submit '投稿' %>
+<% end %>
+
 
 <% end %>

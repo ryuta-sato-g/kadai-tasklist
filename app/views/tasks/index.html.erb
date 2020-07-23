@@ -1,26 +1,11 @@
 <% if logged_in? %>
-<p>ログイン完了ユーザ: 
-<%= current_user.name %><br>
-<%= link_to "新規タスクの投稿", new_task_path %>
-</p>
-<% else %>
+   <div class="row">
+    <aside class="col-sm-4">
+    <%= render "form", task: @task %>
 
-<h1>タスク一覧</h1>
-
-<ul>
-  
-   <% @tasks.each do |task| %>
-   
-   <li>
-   <%= link_to task.id, task %>
-   
-   <%= task.status %>
-   &gt;
-   <%= task.content %>
-   </li>
-     
-   <% end %>
-
-</ul>
+    </aside>
+    <div class="col-sm-8">
+      
+<%= render 'tasks', tasks: @tasks %>
 <% end %>
 
