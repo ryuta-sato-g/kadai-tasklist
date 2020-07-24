@@ -8,7 +8,7 @@
       <div class="media-body">
         <div>
           
-
+    <%= link_to task.user.name, task_path(task.user) %>
  <span class="text-muted">posted at 
 <%= task.created_at %>
 </span>
