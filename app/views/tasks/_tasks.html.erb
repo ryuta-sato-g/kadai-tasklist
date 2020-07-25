@@ -8,7 +8,7 @@
       <div class="media-body">
         <div>
           
-    <%= link_to task.user.name, task_path(task.user) %>
+    <%= link_to task.user.name, root_path %>
  <span class="text-muted">posted at 
 <%= task.created_at %>
 </span>
@@ -25,6 +25,7 @@
           
 <% if current_user == task.user %>
 
+<%= link_to "Edit", edit_task_path(task), class: 'btn btn-primary btn-sm' %>
             
 <%= link_to "Delete", task, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
 

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-    before_action :require_user_logged_in, only: [:index, :show ]
-    before_action :correct_user, only: [:destroy]
+    before_action :require_user_logged_in, only: [:index, :show,]
+    before_action :correct_user, only: [:destroy, :edit]
     def index
         if logged_in?
       @task = current_user.tasks.build  # form_with 用
@@ -8,11 +8,11 @@ class TasksController < ApplicationController
         end
     end
 
-  def show
-      @user = User.find(params[:id])
-      @tasks = @user.tasks.order(id: :desc). page(params[:page])
-      counts(@user)
-  end
+  # def show
+  #     @user = User.find(params[:id])
+  #     @tasks = @user.tasks.order(id: :desc). page(params[:page])
+  #     counts(@user)
+  # end
 
   def new
       @task = Task.new
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
       
       if @task.update(task_params)
           flash[:success] = "Taskは正常に更新されました"
-          redirect_to @task
+          redirect_to root_path
       else
           flash.now[:danger] = "Taskは更新されませんでした"
           render :edit
