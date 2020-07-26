@@ -1,11 +1,21 @@
 <% if logged_in? %>
-   <div class="row">
-    <aside class="col-sm-4">
-    <%= render "form", task: @task %>
 
-    </aside>
-    <div class="col-sm-8">
-      
-<%= render 'tasks', tasks: @tasks %>
+<h1>メッセージ一覧</h1>
+
+<ul>
+  
+<% @tasks.each do |task| %>
+
+    <li>
+<%= link_to task.id, task %>
+        
+<%= task.content %>
+</li>
+  
 <% end %>
 
+</ul>
+
+<%= link_to "新規メッセージの投稿" , new_task_path %>
+
+<% end %>

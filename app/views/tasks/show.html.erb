@@ -1,28 +1,23 @@
-<div class="row">
-  <aside class="col-sm-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">
-<%= @user.name %>
-</h3>
-      </div>
-      
-    </div>
-  </aside>
-  <div class="col-sm-8">
-    <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="
-<%= tasks_path(@task) %>
-" class="nav-link 
-<%= 'active' if current_page?(users_path(@user)) %>
-">Tasks  <span class="badge badge-secondary">
-<%= @count_tasks %>
-</span></a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
-    </ul>
-    
-<%= render 'tasks/tasks', tasks: @tasks %>
+<% if logged_in? %>
 
-  </div>
-</div>
+<h1>id: 
+<%= @task.id %>
+ のメッセージ詳細ページ</h1>
+
+<p>
+<%= @task.content %>
+</p>
+
+
+
+<%= link_to "Edit", edit_task_path(@task), class: 'btn btn-primary btn-sm' %>
+
+<% if current_user == @task.user %>
+         
+<%= link_to "Delete", @task, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+
+<% end %>
+          
+
+
+<% end %>

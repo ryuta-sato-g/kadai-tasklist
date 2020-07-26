@@ -1,18 +1,13 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in, only: [:index, :show,]
-    before_action :correct_user, only: [:destroy, :edit]
+    before_action :correct_user, only: [:destroy,]
     def index
-        if logged_in?
-      @task = current_user.tasks.build  # form_with 用
-      @tasks = current_user.tasks.order(id: :desc).page(params[:page])
-        end
+        @tasks = Task.order(id: :desc).page(params[:page]).per(25)
     end
 
-  # def show
-  #     @user = User.find(params[:id])
-  #     @tasks = @user.tasks.order(id: :desc). page(params[:page])
-  #     counts(@user)
-  # end
+  def show
+     @task = Task.find(params[:id])
+  end
 
   def new
       @task = Task.new
@@ -47,9 +42,10 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @task = Task.find(params[:id])
     @task.destroy
     flash[:success] = 'Task は正常に削除されました'
-    redirect_back(fallback_location: root_path)
+    redirect_to root_url
   end
   
   private 
