@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     end
 
   def show
-     @task = Task.find(params[:id])
+     set_message
   end
 
   def new
@@ -29,12 +29,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-      @task = Task.find(params[:id])
+      set_message
   end
 
   def update
-      @task = Task.find(params[:id])
-      
+      set_message
       if @task.update(task_params)
           flash[:success] = "Taskは正常に更新されました"
           redirect_to root_path
@@ -45,13 +44,17 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    set_message
     @task.destroy
     flash[:success] = 'Task は正常に削除されました'
     redirect_to root_url
   end
   
   private 
+  
+  def set_message
+      @task = Task.find(params[:id])
+  end
   
   def task_params
       params.require(:task).permit(:content, :status)

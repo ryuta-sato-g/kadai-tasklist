@@ -1,6 +1,4 @@
-<% if logged_in? %>
-
-  <div class="row">
+<div class="row">
     <aside class="col-sm-4">
       
     <%= link_to "新規投稿", new_task_path %>
@@ -12,14 +10,3 @@
 
     </div>
   </div>
-<% else %>
-
-  <div class="center jumbotron">
-    <div class="text-center">
-      <h1>Welcome to the Tasks</h1>
-      
-<%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
-
-    </div>
-  </div>
-<% end %>
